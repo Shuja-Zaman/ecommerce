@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+
+    .title{
+        @apply text-7xl tracking-tight font-bold;
+    }
+
+    .border-line{
+        @apply border-neutral-200;
+    }
+
+    .text-highlight{
+        @apply text-sky-500;
+    }
+
+    .text-light{
+        @apply text-neutral-50;
+    }
+
+    .myborder{
+        @apply border-b-[1px] border-neutral-500;
+    }
+
+    .bg-dark{
+        @apply bg-neutral-900;
+    }
+
+}
