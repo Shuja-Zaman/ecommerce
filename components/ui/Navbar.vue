@@ -1,5 +1,5 @@
 <template>
-  <nav class="p-5 flex justify-between items-center fixed w-full myborder">
+  <nav class="p-5 flex justify-between items-center fixed w-full myborder backdrop-blur-md z-50">
     <div class="left">
         <h1 class="text-light">@ecommerce</h1>
     </div>
@@ -32,7 +32,7 @@
         <Placeholder class="h-full" />
 
         <!-- items -->
-        <div class="flex flex-col mt-10">
+        <div class="flex flex-col mt-10" @click="isOpen = false">
             <LinkButton v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
             <SolidButton class="flex justify-center" to="/signin" name="Sign in"/>
 
@@ -48,7 +48,7 @@
 
 const navItems = ref([
     {name:'shop', path:'/shop'},
-    {name:'categories', path:'/categories'},
+    {name:'categories', path:'/shop/category'},
     {name:'cart', path:'/cart'},
     {name:'contact', path:'/contact'},
     

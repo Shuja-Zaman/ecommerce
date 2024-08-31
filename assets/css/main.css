@@ -6,7 +6,15 @@
 @layer components{
 
     .title{
-        @apply text-7xl tracking-tight font-bold;
+        @apply lg:text-7xl text-4xl md:text-6xl  font-bold;
+    }
+
+    .small-title{
+        @apply text-3xl font-semibold;
+    }
+
+    .dimmed{
+        @apply opacity-50;
     }
 
     .border-line{

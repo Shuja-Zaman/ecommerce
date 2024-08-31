@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex flex-col justify-center items-center gap-10 main text-light bg-dark">
-    <h1 class="title"> <span class="text-highlight">Start</span> Shopping Today.</h1>
+    <h1 class="title px-1"> <span class="text-highlight">Start</span> Shopping Today.</h1>
     
     <div class="space-x-5">
         <!-- shop button -->
