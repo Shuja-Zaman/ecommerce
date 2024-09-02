@@ -17,24 +17,32 @@
         @apply opacity-50;
     }
 
-    .border-line{
-        @apply border-neutral-200;
-    }
-
     .text-highlight{
         @apply text-sky-500;
     }
 
-    .text-light{
-        @apply text-neutral-50;
+    .text-dark{
+        @apply text-neutral-800;
     }
 
     .myborder{
-        @apply border-b-[1px] border-neutral-500;
+        @apply border-b-[1px] border-neutral-300;
     }
 
-    .bg-dark{
-        @apply bg-neutral-900;
+    .myborder-l{
+        @apply border-l-[1px] border-neutral-300;
+    }
+
+    .bg-light{
+        @apply bg-neutral-100;
+    }
+
+    .myshadow{
+        @apply shadow-lg shadow-neutral-700;
+    }
+
+    .text-dull{
+        @apply text-neutral-500;
     }
 
 }

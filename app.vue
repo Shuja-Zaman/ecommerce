@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-dark overflow-hidden">
+  <div class="min-h-screen overflow-hidden text-dark bg-light">
     <Navbar />
     <NuxtPage />
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex flex-col justify-center items-center gap-10 main text-light bg-dark">
+  <div class="h-screen flex flex-col justify-center items-center gap-10 main">
     <h1 class="title px-1"> <span class="text-highlight">Start</span> Shopping Today.</h1>
     
     <div class="space-x-5">
@@ -17,11 +17,6 @@
 </script>
 
 <style scoped>
-.main{
-  background-image: url('../assets/images/bg.jpg');
-  background-size: cover;
-  object-fit: contain;
-}
 
 </style>
 
