@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="`/shop/${item.id}`">
     <div class="w-[17rem] p-0 ring-0 shadow-none divide-none bg-transparent border-none m-0">
-    <img src="/assets/images/bg.jpg" class="h-[20rem] bg-cover object-cover" alt="product image">
+    <img :src="img" class="h-[20rem] bg-cover object-cover" alt="product image">
 
     <div class="details pt-2">
       <h1 class="font-medium text-lg">{{ item.name }}</h1>
@@ -20,10 +20,11 @@
 <script setup>
 
 const props = defineProps({
-    item:{}
+  item:{}
 });
 
 const sizes = props.item?.sizes || [];
+const img = props.item?.imgUrls[0] || '';
 
 </script>
 
