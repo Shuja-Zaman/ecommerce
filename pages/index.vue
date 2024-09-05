@@ -6,7 +6,7 @@
         <!-- shop button -->
       <SolidButton name="Shop Now" to="/shop"/>
       <!-- demo -->
-      <OutlineButton name="Demo" to="/demo"/>
+      <OutlineButton name="Watch" to="/watch"/>
     </div>
 
   </div>

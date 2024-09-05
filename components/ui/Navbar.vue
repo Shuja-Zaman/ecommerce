@@ -1,41 +1,105 @@
 <template>
-  <nav class="p-5 flex justify-between items-center fixed w-full myborder backdrop-blur-md z-50">
+  <nav class="josefin-sans-font p-5 flex justify-between items-center fixed w-full myborder backdrop-blur-md z-50">
     <div class="left">
-        <h1 class="text-light">@ecommerce</h1>
+        <h1 class="text-light">
+          <NuxtLink to="/">@ecommerce</NuxtLink>
+        </h1>
     </div>
 
     <!-- display screen -->
     <div class="center space-x-8 hidden lg:block">
         <LinkButton v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
+        <!-- slider for cart -->
+        <div class="inline relative">
+          <div v-if="subTotal > 0" class="animate-pulse absolute h-2 w-2 bg-red-600 end-0 top-0 rounded-full"></div>
+          <GhostButton class="rounded" name="cart" @click="openCart = true"/>
+        </div>
+        <USlideover v-model="openCart">
+          <div class="p-4 flex-1">
+            <UButton
+              color="gray"
+              variant="ghost"
+              size="xl"
+              icon="i-heroicons-x-mark-20-solid"
+              class="flex absolute end-5 top-5 z-10"
+              square
+              padded
+              @click="openCart = false"
+            />
+
+            <div class=" h-full flex flex-col px-10 pb-5 gap-5 justify-between">
+              <!-- product details -->
+              <div>
+                <h1 class="text-4xl font-bold">Cart</h1>
+                <hr class="my-5">
+                <h1 v-if="!subTotal" class="pt-2">Your cart is currently empty.</h1>
+                <!-- products -->
+                <div class="space-y-8">
+                  <NuxtLink class="flex gap-2" :to="`/shop/${item.id}`" v-for="item in cartItems" :key="item">
+                    <img class="h-20 w-20" :src="item.img" alt="" @click="openCart = false">
+                    <div class="flex flex-col justify-between w-full">
+                      <h1 @click="openCart = false" class="">{{ item.name }} - {{ item.size }}</h1>
+                      <div class="flex justify-between items-center w-full">
+                         <!-- quanitity -->
+                        <div class="flex gap-2 border-[1px]  p-1">
+                          <UIcon @click="decreaseQuantity(item)" class="text-2xl hover:bg-gray-500" name="i-heroicons-minus-16-solid"/>
+                          <h1 class="">{{ item.quantity }}</h1>
+                          <UIcon @click="increaseQuantity(item)" class="text-2xl hover:bg-gray-500" name="i-heroicons-plus-16-solid"/>
+                        </div>
+                        <!-- price -->
+                        <h1>Rs.{{ item.price }}</h1>
+                      </div>
+                    </div>
+                  </NuxtLink>
+                </div>
+              </div>
+              <!-- total -->
+              <div v-if="subTotal" class="space-y-5 ">
+                <hr>
+                <div class="flex items-center justify-between">
+                  <h1 class="text-xl font-bold uppercase">Subtotal</h1>
+                  <p>Rs.{{ subTotal }}</p>
+                </div>
+                <p class="text-xs text-dull">Shipping, taxes, and discount codes calculated at checkout.</p>
+                <SolidButton class="block text-center w-full" @click="openCart = false" to="/checkout" name="Checkout"/>
+              </div>
+
+            </div>
+
+          </div>
+        </USlideover>
+
     </div>
-    <div class="right  hidden lg:block">
+    <div class="right hidden lg:block">
         <SolidButton name="Sign in" to="/signin"/>
     </div>
 
     <!-- slider -->
-    <div class="lg:hidden block">
+    <div class="lg:hidden flex items-center gap-2">
+      <div class="relative">
+        <div v-if="subTotal > 0" class="animate-pulse absolute h-2 w-2 bg-red-600 top-3 end-0 rounded-full"></div>
+        <GhostButton icon="i-heroicons-shopping-bag" color="gray" @click="openCart = true"/>
+      </div>
     <!-- <UButton label="Open" @click="isOpen = true" /> -->
     <UIcon @click="isOpen = true"  name="i-solar-hamburger-menu-outline" class="h-7 w-7"/>
 
     <USlideover v-model="isOpen" class="lg:hidden block">
-      <div class="p-4 flex-1 bg-dark">
+      <div class="p-4 flex-1">
         <UButton
           color="gray"
           variant="ghost"
-          size="sm"
+          size="xl"
           icon="i-heroicons-x-mark-20-solid"
           class="flex absolute end-5 top-5 z-10"
           square
           padded
           @click="isOpen = false"
         />
-        <Placeholder class="h-full" />
 
         <!-- items -->
         <div class="flex flex-col mt-10" @click="isOpen = false">
-            <LinkButton v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
-            <SolidButton class="flex justify-center" to="/signin" name="Sign in"/>
-
+          <LinkButton v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
+          <SolidButton class="flex justify-center" to="/signin" name="Sign in"/>
         </div>
 
       </div>
@@ -44,17 +108,48 @@
   </nav>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 
 const navItems = ref([
     {name:'shop', path:'/shop'},
-    {name:'categories', path:'/shop/category'},
-    {name:'cart', path:'/cart'},
     {name:'contact', path:'/contact'},
     
 ]);
 
 const isOpen = ref(false)
+const openCart = ref(false);
+
+const cartData = useState('cartData');
+const cartItems = computed(() => cartData.value);
+const subTotal = useState('subTotal');
+
+function decreaseQuantity(item){
+  if(item.quantity == 1){
+    // remove item from cart
+    cartData.value = cartData.value.filter(cartItem => {
+      // Keep only items that don't match both the ID and size of the current item
+      return !(cartItem.id === item.id && cartItem.size === item.size);
+    });
+    subTotal.value -= item.price;
+  }
+  else if(item.quantity > 1){
+    item.quantity--;
+    subTotal.value -= item.price; 
+  }
+  console.log(cartData.value);
+}
+
+const message = ref('');
+
+function increaseQuantity(item) {
+  if(item.quantity == 10){
+    message.value = 'Max limit reached';
+  }
+  else if(item.quantity < 10){
+    item.quantity++;
+    subTotal.value += item.price; 
+  }  
+}
 
 </script>
 

@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.josefin-sans-font {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
 
 
 @layer components{
@@ -10,11 +20,11 @@
     }
 
     .small-title{
-        @apply text-3xl font-semibold;
+        @apply text-3xl font-bold;
     }
 
     .dimmed{
-        @apply opacity-50;
+        @apply opacity-30;
     }
 
     .text-highlight{

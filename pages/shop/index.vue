@@ -6,7 +6,7 @@
         <LinkButton class="w-max" v-for="category in categories" :key="category.id" :name="category.name" :to="category.path"/>
     </div>
     <!-- products -->
-    <div class="right lg:w-[85%] w-full lg:myborder-l pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div class="overflow-auto right lg:w-[85%] w-full lg:myborder-l pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       <ProductCard class="mx-auto" v-for="product in products" :key="product.id" :item="product"/>
     </div>
   </div>
