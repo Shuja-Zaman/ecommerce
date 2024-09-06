@@ -1,21 +1,21 @@
 <template>
-  <div class="pt-20 min-h-screen lg:flex">
-    <Loader v-if="isLoading"/>
-    <!-- categories -->
-    <div class="lg:flex flex-col left lg:w-[15%] w-full text-center p-1 pt-3">
-        <LinkButton class="w-max" v-for="category in categories" :key="category.id" :name="category.name" :to="category.path"/>
-    </div>
-    <!-- products -->
-    <div class="overflow-auto right lg:w-[85%] w-full lg:myborder-l pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      <ProductCard class="mx-auto" v-for="product in products" :key="product.id" :item="product"/>
-    </div>
+  <div class="gap-10 lg:px-5 lg:pt-10 pt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full h-full">
+    <div class="flex p-0  flex-col gap-1">
+          <LinkButton class="w-max px-0 text-xl" v-for="category in categories" :key="category.id" :name="category.name" :to="`${category.path}-${category.id}`"/>
+      </div>
+    <ProductCard class="mx-auto" v-for="product in products" :key="product.id" :item="product"/>
   </div>
 </template>
 
 <script setup>
-import { collection, getDocs } from 'firebase/firestore';
 
-const { categories, isLoading } = useFetchCategories();
+definePageMeta({
+  layout:'shop-layout'
+});
+
+import { collection, getDocs } from 'firebase/firestore';
+const { categories, isLoading } = useFetchCategories();  
+
 const products = ref([]);
 
 const fetchProducts = async () => {
@@ -27,6 +27,7 @@ const fetchProducts = async () => {
                 id:doc.id,
                 ...doc.data()
             }));
+            console.log(products.value);
         } catch (error) {
             console.error('Error fetching Products: ',error);
         }finally{
@@ -36,7 +37,7 @@ const fetchProducts = async () => {
 
 onMounted(() => {
   fetchProducts();
-})
+});
 
 </script>
 

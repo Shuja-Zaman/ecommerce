@@ -8,7 +8,9 @@
         <div class="flex items-center justify-between">
             <h1>@ecommerce</h1>
             <NuxtLink to="/cart">
-                <UIcon name="i-heroicons-shopping-bag" class="text-2xl"/>
+                <UTooltip text="Cart" class="text-xl" :popper="{placement:'top'}">
+                    <UIcon name="i-heroicons-shopping-bag" class="text-2xl"/>
+                </UTooltip>
             </NuxtLink>
         </div>
         <div class="flex items-center justify-between mt-5">
@@ -18,7 +20,7 @@
         <!-- input form -->
         <UForm validate-on="submit" :schema="schema" :state="state" class="space-y-5 mt-5" @submit="onSubmit">
             <UFormGroup required label="Email" name="email">
-                <UInput v-model="state.email" size="xl" color="sky"/>
+                <UInput v-model="state.email" size="xl" color="dark"/>
             </UFormGroup>
 
             <h1 class="small-title pt-3">Delivery</h1>
@@ -29,28 +31,28 @@
 
             <div class="names flex justify-between gap-5">
                 <UFormGroup required class="w-full" label="First name" name="firstName">
-                    <UInput v-model="state.firstName" type="text"  size="xl" color="sky"/>
+                    <UInput v-model="state.firstName" type="text"  size="xl" color="dark"/>
                 </UFormGroup>
                 <UFormGroup required label="Last name" class="w-full" name="lastName">
-                    <UInput v-model="state.lastName" type="text"  size="xl" color="sky"/>
+                    <UInput v-model="state.lastName" type="text"  size="xl" color="dark"/>
                 </UFormGroup>
             </div>
 
             <UFormGroup required label="Complete address" class="w-full" name="lastName">
-                <UInput v-model="state.address" type="text"  size="xl" color="sky"/>
+                <UInput v-model="state.address" type="text"  size="xl" color="dark"/>
             </UFormGroup>     
             
             <div class="city postal flex justify-between gap-5">
                 <UFormGroup required class="w-full" label="City" name="city">
-                    <UInput v-model="state.city" type="text"  size="xl" color="sky"/>
+                    <UInput v-model="state.city" type="text"  size="xl" color="dark"/>
                 </UFormGroup>
                 <UFormGroup required label="Postal code" class="w-full" name="postal">
-                    <UInput v-model="state.postal" type="text"  size="xl" color="sky"/>
+                    <UInput v-model="state.postal" type="text"  size="xl" color="dark"/>
                 </UFormGroup>
             </div>
 
             <UFormGroup required label="Mobile no." class="w-full" name="lastName">
-                <UInput v-model="state.mobile" type="text"  size="xl" color="sky"/>
+                <UInput v-model="state.mobile" type="text"  size="xl" color="dark"/>
             </UFormGroup> 
 
             <h1 class="text-xl font-semibold pt-3">Shipping method</h1>
@@ -70,7 +72,7 @@
         
     </div>
     <!-- products info -->
-    <div :class="isLoading ? 'dimmed pointer-events-none' : '' " class="w-full h-full bg-gray-200 myborder-l lg:ml-5 pt-10 px-10 pb-5 overflow-y-scroll">
+    <div :class="isLoading ? 'dimmed pointer-events-none' : '' " class="w-full h-full bg-gray-200 myborder-l lg:ml-5 pt-10 px-10 pb-5 overflow-auto">
         <!-- products -->
         <div class="space-y-5">
             <div v-for="item in cartData" :key="item.id" class="flex justify-between items-center">
@@ -93,7 +95,7 @@
         <div class="mt-10 space-y-3">
             <!-- subtotal -->
             <div class="flex justify-between items-center text-sm">
-                <h1>Subtotal</h1>
+                <h1>Subtotal ({{ cartData.length }} - items)</h1>
                 <p>Rs. {{ subTotal }}</p>
             </div>
             <!-- shipping -->
@@ -177,6 +179,17 @@ const completeOrder = async () => {
         });
 
         isLoading.value = false;
+        state.email = '';
+        state.address = '';
+        state.city = '';
+        state.firstName = '';
+        state.lastName = '';
+        state.mobile = '';
+        state.postal = '';
+
+        cartData.value = [];
+        subTotal.value = 0;
+
         router.push('/thank-you');
         
 

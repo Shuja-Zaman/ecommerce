@@ -9,6 +9,7 @@
     <!-- display screen -->
     <div class="center space-x-8 hidden lg:block">
         <LinkButton v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
+        <CategoryDropdown/>
         <!-- slider for cart -->
         <div class="inline relative">
           <div v-if="subTotal > 0" class="animate-pulse absolute h-2 w-2 bg-red-600 end-0 top-0 rounded-full"></div>
@@ -24,6 +25,7 @@
               class="flex absolute end-5 top-5 z-10"
               square
               padded
+              mode="hover"
               @click="openCart = false"
             />
 
@@ -97,9 +99,21 @@
         />
 
         <!-- items -->
-        <div class="flex flex-col mt-10" @click="isOpen = false">
-          <LinkButton v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
-          <SolidButton class="flex justify-center" to="/signin" name="Sign in"/>
+        <div class="flex flex-col mt-12 border-t-[1px]">
+          <LinkButton @click="isOpen = false" v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
+          <GhostButton @click="showCategories = !showCategories" name="categories" :trailing-icon="showCategories ? 'i-heroicons-chevron-up-20-solid': 'i-heroicons-chevron-down-20-solid'"/>
+          <div v-if="showCategories" class="flex flex-col pl-3 gap-2 mb-5">
+            <LinkButton class="underline" @click="isOpen = false, showCategories = false" v-for="item in categories" :key="item.id" :name="item.name" :to="`${item.path}-${item.id}`"/>
+          </div>
+          <SolidButton @click="isOpen = false" class="flex justify-center mt-5" to="/signin" name="Sign in"/>
+          <div class="flex gap-5 mt-5">
+            <a href="">
+              <UIcon name="i-logos-instagram-icon" class="h-8 w-8"/>
+            </a>
+            <a href="">
+              <UIcon name="i-logos-facebook" class="h-8 w-8"/>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -109,6 +123,9 @@
 </template>
 
 <script setup>
+
+const { categories } = useFetchCategories();
+const showCategories = ref(false);
 
 const navItems = ref([
     {name:'shop', path:'/shop'},
