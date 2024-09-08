@@ -2,7 +2,7 @@
     <div class="pt-20 min-h-screen p-5">
       <Loader v-if="isLoading"/>
       <!-- products -->
-       <h1 class="title text-center mt-10">Products</h1>
+       <h1 class="title text-center my-10">Products</h1>
         <NuxtPage />
     </div>
   </template>

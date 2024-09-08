@@ -13,9 +13,8 @@
                 </UTooltip>
             </NuxtLink>
         </div>
-        <div class="flex items-center justify-between mt-5">
+        <div class="mt-5">
             <h1 class="small-title">Contact</h1>
-            <GhostButton name="Log in" to="/account/login" class="underline p-0"/>
         </div>
         <!-- input form -->
         <UForm validate-on="submit" :schema="schema" :state="state" class="space-y-5 mt-5" @submit="onSubmit">
@@ -157,7 +156,7 @@ const completeOrder = async () => {
     try {
         isLoading.value = true;
 
-        const orderData = {
+        const docRef = await addDoc(collection(db, 'orders'),{
             email: state.email,
             name : state.firstName + ' ' + state.lastName,
             address: state.address,
@@ -172,11 +171,9 @@ const completeOrder = async () => {
                 price: item.price,
                 size: item.size,
             }))
-        };
-
-        const docRef = await addDoc(collection(db, 'orders'),{
-            orderData
         });
+
+        console.log(docRef.id);
 
         isLoading.value = false;
         state.email = '';
@@ -190,7 +187,7 @@ const completeOrder = async () => {
         cartData.value = [];
         subTotal.value = 0;
 
-        router.push('/thank-you');
+        router.push(`/thank-you-${docRef.id}`);
         
 
     } catch (error) {

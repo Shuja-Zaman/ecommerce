@@ -73,7 +73,12 @@
 
     </div>
     <div class="right hidden lg:block">
-        <SolidButton name="Sign in" to="/signin"/>
+      <OutlineButton v-if="!userCred.id" @click="signin" name="Sign in" icon='i-logos-google-icon'/>
+      <UTooltip v-if="userCred.id" text="Account">
+        <NuxtLink :to="`/user/${userCred.id}`">
+          <UAvatar size='md' chip-color="sky" :src="userCred.imgUrl || ''" class="hover:cursor-pointer" alt="Avatar"></UAvatar>
+        </NuxtLink>
+      </UTooltip>
     </div>
 
     <!-- slider -->
@@ -105,15 +110,10 @@
           <div v-if="showCategories" class="flex flex-col pl-3 gap-2 mb-5">
             <LinkButton class="underline" @click="isOpen = false, showCategories = false" v-for="item in categories" :key="item.id" :name="item.name" :to="`${item.path}-${item.id}`"/>
           </div>
-          <SolidButton @click="isOpen = false" class="flex justify-center mt-5" to="/signin" name="Sign in"/>
-          <div class="flex gap-5 mt-5">
-            <a href="">
-              <UIcon name="i-logos-instagram-icon" class="h-8 w-8"/>
-            </a>
-            <a href="">
-              <UIcon name="i-logos-facebook" class="h-8 w-8"/>
-            </a>
-          </div>
+          <OutlineButton v-if="!userCred.id" @click="isOpen = false, signin()" class="flex justify-center mt-5" icon="i-logos-google-icon" name="Sign in"/>
+          <NuxtLink @click="isOpen = false" v-if="userCred.id" :to="`/user/${userCred.id}`">
+            <h1 class="text-center p-2 bg-gradient-to-r from-sky-300 via-sky-600 to-sky-800 font-bold text-neutral-100">{{ userCred.name }}</h1>
+          </NuxtLink>
         </div>
 
       </div>
@@ -153,7 +153,6 @@ function decreaseQuantity(item){
     item.quantity--;
     subTotal.value -= item.price; 
   }
-  console.log(cartData.value);
 }
 
 const message = ref('');
@@ -167,6 +166,34 @@ function increaseQuantity(item) {
     subTotal.value += item.price; 
   }  
 }
+
+import { getAuth, signInWithPopup } from "firebase/auth";
+
+const nuxtApp = useNuxtApp();
+const auth = getAuth();
+const provider = nuxtApp.$provider;
+const userCred = useState('userCred',() => ({
+  name:'',
+  email:'',
+  imgUrl:'',
+  id:''
+}));
+
+const signin = async () => {
+  try {
+    console.log('hello');
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    userCred.value = {
+      email: user.email,
+      name: user.displayName,
+      imgUrl: user.photoURL,
+      id: user.uid
+    };
+  } catch (error) {
+    console.error('Error signing in: ' ,error);
+  }
+};
 
 </script>
 

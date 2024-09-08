@@ -1,10 +1,16 @@
 <template>
-  <div class="px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  <div v-if="!isLoading" class="px-5 my-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <Loader v-if="isLoading"/>
+    <div class="flex p-0  flex-col gap-1">
+          <LinkButton class="w-max px-0 text-xl" v-for="category in categories" :key="category.id" :name="category.name" :to="`${category.path}-${category.id}`"/>
+      </div>
     <ProductCard class="mx-auto" v-for="product in products" :key="product.id" :item="product"/>
   </div>
 </template>
 
 <script setup>
+
+const { categories, isLoading } = useFetchCategories();  
 
 definePageMeta({
   layout:'shop-layout'
@@ -14,7 +20,6 @@ import { collection, getDocs, doc, query, where } from 'firebase/firestore';
 
 const products = ref([]);
 const route = useRoute();
-const isLoading = ref(true);
 
 const fetchProducts = async () => {
   try {

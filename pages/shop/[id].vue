@@ -25,7 +25,7 @@
              </div>
 
             <SolidButton @click="addToCart(), toast.add({title:'Confirmation', description:'Product added successfully to cart!', color:'sky'})" class="w-full block text-center" name="Add to cart"/>
-            <OutlineButton to="/checkout" class="w-full block text-center" name="Buy it now"/>
+            <OutlineButton @click="buyNow()" to="/checkout" class="w-full block text-center" name="Buy it now"/>
           </div>
     </div>
   </div>
@@ -63,6 +63,7 @@ const fetchProduct = async () => {
 
 const cartData = useState('cartData', () => []);
 const subTotal = useState('subTotal',() => 0);
+const router = useRouter();
 
 const addToCart = () => {
     try {
@@ -85,6 +86,31 @@ const addToCart = () => {
         }
         console.log(subTotal.value);
         console.log(cartData.value);
+    } catch (error) {
+        console.error("Error adding to Cart: ",error);
+    }
+};
+
+const buyNow = () => {
+    try {
+        const hasItem = cartData.value.find(item => item.name === `${product.value.name}` && item.size === `${selectedSize.value}`);
+        if(hasItem){
+            hasItem.quantity++;
+            subTotal.value += hasItem.price;
+        }
+        else{
+            const cartItem = {
+                id:route.params.id,
+                name:product.value.name,
+                size:selectedSize.value,
+                img:product.value.imgUrls[0],
+                quantity:1,
+                price:product.value.price
+            };
+            cartData.value.push(cartItem);
+            subTotal.value += cartItem.price;
+        }
+        router.push('/checkout');
     } catch (error) {
         console.error("Error adding to Cart: ",error);
     }

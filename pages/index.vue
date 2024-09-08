@@ -1,12 +1,10 @@
 <template>
-  <div class="h-screen flex flex-col justify-center items-center gap-10 main">
+  <div class="h-screen flex flex-col mb-10 justify-center items-center gap-10 main">
     <h1 class="title px-1"> <span class="text-highlight">Start</span> Shopping Today.</h1>
     
     <div class="space-x-5">
         <!-- shop button -->
       <SolidButton name="Shop Now" to="/shop"/>
-      <!-- demo -->
-      <OutlineButton name="Watch" to="/watch"/>
     </div>
 
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="gap-10 lg:px-5 lg:pt-10 pt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full h-full">
+  <div class="gap-10 my-10 lg:px-5 lg:pt-10 pt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full h-full">
     <div class="flex p-0  flex-col gap-1">
           <LinkButton class="w-max px-0 text-xl" v-for="category in categories" :key="category.id" :name="category.name" :to="`${category.path}-${category.id}`"/>
       </div>
