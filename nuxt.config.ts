@@ -1,5 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app:{
+    head:{
+      meta:[
+        { name:'google-site-verification', content:'nBru1K8NLBn229WD1WVzrd8UwWuv3hmSeAvCZRP3OYA' }
+      ]
+    }
+  },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   runtimeConfig:{
