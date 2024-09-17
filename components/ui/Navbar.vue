@@ -2,7 +2,7 @@
   <nav class="josefin-sans-font p-5 flex justify-between items-center fixed w-full myborder backdrop-blur-md z-50">
     <div class="left">
         <h1 class="text-light">
-          <NuxtLink to="/">@ecommerce</NuxtLink>
+          <NuxtLink to="/">aktivfits</NuxtLink>
         </h1>
     </div>
 
@@ -37,8 +37,8 @@
                 <h1 v-if="!subTotal" class="pt-2">Your cart is currently empty.</h1>
                 <!-- products -->
                 <div class="space-y-8">
-                  <NuxtLink class="flex gap-2" :to="`/shop/${item.id}`" v-for="item in cartItems" :key="item">
-                    <img class="h-20 w-20" :src="item.img" alt="" @click="openCart = false">
+                  <div class="flex gap-2" v-for="item in cartItems" :key="item">
+                    <img class="bg-cover object-cover h-20 w-20" :src="item.img" alt="" @click="openCart = false">
                     <div class="flex flex-col justify-between w-full">
                       <h1 @click="openCart = false" class="">{{ item.name }} - {{ item.size }}</h1>
                       <div class="flex justify-between items-center w-full">
@@ -52,7 +52,7 @@
                         <h1>Rs.{{ item.price }}</h1>
                       </div>
                     </div>
-                  </NuxtLink>
+                  </div>
                 </div>
               </div>
               <!-- total -->

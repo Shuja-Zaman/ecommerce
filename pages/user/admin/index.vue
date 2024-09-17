@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen pt-24 px-5 flex gap-5 mb-10">
+  <div class="min-h-screen pt-24 px-5 flex lg:flex-row flex-col gap-5 mb-10">
     <!-- menu -->
-    <div class="flex flex-col border-[1px] h-max rounded shadow-lg">
+    <div class="flex lg:flex-col flex-row justify-around border-[1px] h-max rounded shadow-lg">
         <UTooltip text="Home">
             <UButton icon="i-heroicons-home-solid" variant="soft" color="sky" size="xl"/>
         </UTooltip>
@@ -19,8 +19,10 @@
         </UTooltip>
     </div>
     <!-- render component -->
-     <div class="border-[1px] rounded shadow-lg w-full">
-        <h1>h</h1>
+     <div class="border-[1px] rounded shadow-lg w-full h-max pb-4">
+        <!-- <Category/> -->
+        <!-- <Product/> -->
+        <Bundle/>
      </div>
 
   </div>

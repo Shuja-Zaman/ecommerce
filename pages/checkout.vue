@@ -80,7 +80,7 @@
                         <div class="quantity absolute opacity-80 -right-3 -top-3 rounded-full bg-neutral-700 py-[1px] px-2 text-white">
                             {{ item.quantity }}
                         </div>
-                        <img class="h-20 w-20 rounded" :src="item.img" alt="product image">
+                        <img class="h-20 w-20 rounded bg-cover object-cover" :src="item.img" alt="product image">
                     </div>
                     <div class="flex flex-col justify-center">
                         <h1 class="font-semibold">{{ item.name }}</h1>
@@ -169,11 +169,9 @@ const completeOrder = async () => {
                 name: item.name,
                 quantity: item.quantity,
                 price: item.price,
-                size: item.size,
+                bundleProducts: item.bundleProducts
             }))
         });
-
-        console.log(docRef.id);
 
         isLoading.value = false;
         state.email = '';

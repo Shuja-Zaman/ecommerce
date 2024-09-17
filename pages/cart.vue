@@ -9,7 +9,7 @@
         <div v-if="subTotal > 0" class="lg:flex hidden flex-col gap-10 border-y-[1px] py-5">
             <div v-for="item in cartData" :key="item.id" class="flex flex-row items-center justify-between">
                 <div class="flex gap-2 items-center">
-                    <img class="h-36" :src="item.img" alt="product image">
+                    <img class="h-36 w-36 bg-cover object-cover" :src="item.img" alt="image">
                     <h1 class="text-2xl font-light">{{ item.name }}</h1>
                     <p>- {{ item.size }}</p>
                 </div>
@@ -25,7 +25,7 @@
          <div v-if="subTotal > 0" class="lg:hidden block py-5 border-y-[1px]">
           <div class="space-y-8">
             <div class="flex gap-2" v-for="item in cartData" :key="item">
-              <img class="h-20 w-20" :src="item.img" alt="">
+              <img class="h-20 w-20 bg-cover object-cover" :src="item.img" alt="">
               <div class="flex flex-col justify-between w-full">
                 <h1 class="text-lg font-light">{{ item.name }}</h1>
                 <p>{{ item.size }}</p>
@@ -77,7 +77,6 @@ function decreaseQuantity(item){
     item.quantity--;
     subTotal.value -= item.price; 
   }
-  console.log(cartData.value);
 }
 
 const message = ref('');

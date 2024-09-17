@@ -13,6 +13,7 @@ const isHovered = ref(false);
         <NuxtLink class="hover:bg-neutral-200 rounded hover:pl-1 duration-200" :to="`${item.path}-${item.id}`" v-for="item in categories" :key="item.id">
             {{ item.name }}
         </NuxtLink>
+        <NuxtLink class="hover:bg-neutral-200 rounded hover:pl-1 duration-200" to="/shop">Bundles</NuxtLink>
     </div>
 </div>
 </template>

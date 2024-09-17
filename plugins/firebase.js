@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 export default defineNuxtPlugin((nuxtApp) => {
 
@@ -19,10 +20,12 @@ export default defineNuxtPlugin((nuxtApp) => {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 const provider = new GoogleAuthProvider();
 
 nuxtApp.provide('firebase',app);
 nuxtApp.provide('firestore',db);
 nuxtApp.provide('provider', provider);
+nuxtApp.provide('storage', storage);
 
 });
