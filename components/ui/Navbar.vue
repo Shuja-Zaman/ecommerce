@@ -108,8 +108,10 @@
           <LinkButton @click="isOpen = false" v-for="item in navItems" :key="item.name" :name="item.name" :to="item.path"/>
           <GhostButton @click="showCategories = !showCategories" name="categories" :trailing-icon="showCategories ? 'i-heroicons-chevron-up-20-solid': 'i-heroicons-chevron-down-20-solid'"/>
           <div v-if="showCategories" class="flex flex-col pl-3 gap-2 mb-5">
-            <LinkButton class="underline" @click="isOpen = false, showCategories = false" v-for="item in categories" :key="item.id" :name="item.name" :to="`${item.path}-${item.id}`"/>
-          </div>
+            <LinkButton class="text-sky-800" @click="isOpen = false, showCategories = false" v-for="item in categories" :key="item.id" :name="item.name" :to="`${item.path}-${item.id}`"/>
+            <SolidButton @click="isOpen = false" class=" p-1 duration-200" variant="ghost" color="red" to="/shop" name="Bundles" icon="i-heroicons-fire-solid" />
+
+        </div>
           <OutlineButton v-if="!userCred.id" @click="isOpen = false, signin()" class="flex justify-center mt-5" icon="i-logos-google-icon" name="Sign in"/>
           <NuxtLink @click="isOpen = false" v-if="userCred.id" :to="`/user/${userCred.id}`">
             <h1 class="text-center p-2 bg-gradient-to-r from-sky-300 via-sky-600 to-sky-800 font-bold text-neutral-100">{{ userCred.name }}</h1>

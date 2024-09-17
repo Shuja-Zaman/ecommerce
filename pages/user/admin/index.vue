@@ -22,7 +22,9 @@
      <div class="border-[1px] rounded shadow-lg w-full h-max pb-4">
         <!-- <Category/> -->
         <!-- <Product/> -->
-        <Bundle/>
+        <!-- <Bundle/> -->
+        <!-- <Message/> -->
+        <Home/>
      </div>
 
   </div>

@@ -60,15 +60,11 @@ const submitMessage = async () => {
     try {
         isLoading.value = true;
 
-        const messageData = {
-            email: state.email,
-            name : state.name,
-            message: state.message,
-            mobile: state.mobile,
-        };
-
         const docRef = await addDoc(collection(db, 'messages'),{
-            messageData
+          email: state.email,
+          name : state.name,
+          message: state.message,
+          mobile: state.mobile,
         });
 
         isLoading.value = false;
