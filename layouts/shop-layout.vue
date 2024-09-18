@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-20 min-h-screen p-5">
+    <div class="pt-24 min-h-screen p-5">
       <Loader v-if="isLoading"/>
       <!-- show bundles -->
       <UButton variant="solid" :label="show ? 'Hide Bundles' : 'Show Bundles' " @click="show = !show" size="xl" class="bg-gradient-to-r from-orange-400 to-pink-500 rounded-none w-full block text-center"/>
