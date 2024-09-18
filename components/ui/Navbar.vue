@@ -29,18 +29,18 @@
               @click="openCart = false"
             />
 
-            <div class=" h-full flex flex-col px-10 pb-5 gap-5 justify-between">
+            <div class=" flex flex-col px-10 pb-5 gap-5 justify-between h-screen">
               <!-- product details -->
-              <div>
+              <div class="h-[65%] overflow-hidden">
                 <h1 class="text-4xl font-bold">Cart</h1>
                 <hr class="my-5">
                 <h1 v-if="!subTotal" class="pt-2">Your cart is currently empty.</h1>
                 <!-- products -->
-                <div class="space-y-8">
+                <div class="space-y-8 overflow-auto  h-full">
                   <div class="flex gap-2" v-for="item in cartItems" :key="item">
                     <img class="bg-cover object-cover h-20 w-20" :src="item.img" alt="" @click="openCart = false">
                     <div class="flex flex-col justify-between w-full">
-                      <h1 @click="openCart = false" class="">{{ item.name }} - {{ item.size }}</h1>
+                      <h1 @click="openCart = false" class="">{{ item.name }} <span v-if="item.size">- {{ item.size }}</span></h1>
                       <div class="flex justify-between items-center w-full">
                          <!-- quanitity -->
                         <div class="flex gap-2 border-[1px]  p-1">
@@ -56,7 +56,7 @@
                 </div>
               </div>
               <!-- total -->
-              <div v-if="subTotal" class="space-y-5 ">
+              <div v-if="subTotal" class="space-y-5 h-[30%]">
                 <hr>
                 <div class="flex items-center justify-between">
                   <h1 class="text-xl font-bold uppercase">Subtotal</h1>

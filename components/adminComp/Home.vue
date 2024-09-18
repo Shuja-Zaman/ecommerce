@@ -1,6 +1,6 @@
 <template>
   <div class="p-2">
-    jpmes
+    coming soon
   </div>
 </template>
 

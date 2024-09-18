@@ -144,6 +144,7 @@ const addToCart = () => {
             };
             cartData.value.push(bundleItem);
             subTotal.value += bundleItem.price;
+            console.log(cartData.value)
         }
 
         toast.add({ title: 'Confirmation', description: 'Products added successfully to cart!', color: 'sky' });

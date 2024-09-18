@@ -27,7 +27,11 @@
             <div class="flex gap-2" v-for="item in cartData" :key="item">
               <img class="h-20 w-20 bg-cover object-cover" :src="item.img" alt="">
               <div class="flex flex-col justify-between w-full">
-                <h1 class="text-lg font-light">{{ item.name }}</h1>
+                <h1 class="text-lg font-light">{{ item.name }} 
+                  <h1 class="text-sm pl-2 text-sky-700" v-for="bundleItem in item.bundleProducts" :key="bundleItem.id">
+                    - {{bundleItem.name }} - {{ bundleItem.size }}
+                  </h1>
+              </h1>
                 <p>{{ item.size }}</p>
                 <div class="flex justify-between items-center w-full">
                     <!-- quanitity -->

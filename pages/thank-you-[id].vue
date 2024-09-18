@@ -27,7 +27,12 @@
         <div class="flex flex-col">
           <h1>Items:</h1>
           <h1 v-for="item in order.products" :key="item.id">
-            - {{ item.name }} ({{ item.size }}) x {{ item.quantity }}
+            - {{ item.name }} <span v-if="item.size">({{ item.size }})</span> x {{ item.quantity }}
+            <span v-for="bundleItem in item.bundleProducts" :key="bundleItem.id">
+              <h1 class="pl-5 text-sky-700">
+                {{ bundleItem.name }} - {{ bundleItem.size }}
+              </h1>
+            </span>
           </h1>
         </div>
 

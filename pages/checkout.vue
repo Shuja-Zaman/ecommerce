@@ -169,7 +169,11 @@ const completeOrder = async () => {
                 name: item.name,
                 quantity: item.quantity,
                 price: item.price,
-                bundleProducts: item.bundleProducts
+                size: item.size ? item.size : '',
+                bundleProducts: item.bundleProducts ? item.bundleProducts.map((bundleItem) => ({
+                    name:bundleItem.name,
+                    size: bundleItem.size
+                })) : []
             }))
         });
 
