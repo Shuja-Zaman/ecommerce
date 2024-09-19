@@ -2,7 +2,9 @@
   <nav class="josefin-sans-font p-5 flex justify-between items-center fixed w-full myborder backdrop-blur-md z-50">
     <div class="left">
         <h1 class="text-light">
-          <NuxtLink to="/">aktivfits</NuxtLink>
+          <NuxtLink to="/">
+            <img src="/assets/logos/logo_1.png" alt="aktivfits" class="h-8">
+          </NuxtLink>
         </h1>
     </div>
 

@@ -2,7 +2,11 @@
   <div class="flex lg:flex-row flex-col justify-between gap-10 bg-sky-100 hover:bg-sky-200 duration-200 footer p-5 py-10">
     <!-- title -->
     <div class="space-y-8">
-        <h1>aktivfits</h1>
+        <h1>
+            <NuxtLink to="/">
+                <img src="/assets/logos/logo_1.png" alt="aktivfits" class="h-8">
+          </NuxtLink>
+        </h1>
         <p class="text-sm text-dull">Pakistan's best marketplace to buy premium clothing.</p>
     </div>
     <!-- links -->

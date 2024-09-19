@@ -1,7 +1,7 @@
 <template>
   <div class="gap-10 my-10 lg:px-5 lg:pt-24 pt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full h-full">
-    <div class="flex p-0  flex-col gap-1">
-          <LinkButton class="w-max px-0 mt-5 text-xl" v-for="category in categories" :key="category.id" :name="category.name" :to="`${category.path}-${category.id}`"/>
+    <div class="flex p-0  flex-col">
+          <LinkButton class="w-max px-0 text-xl" color="dark" v-for="category in categories" :key="category.id" :name="category.name" :to="`${category.path}-${category.id}`"/>
       </div>
     <ProductCard class="mx-auto" v-for="product in products" :key="product.id" :item="product"/>
   </div>
