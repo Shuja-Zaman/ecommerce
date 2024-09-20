@@ -28,7 +28,7 @@
     }
 
     .text-highlight{
-        @apply text-sky-500;
+        @apply text-sky-700;
     }
 
     .text-dark{

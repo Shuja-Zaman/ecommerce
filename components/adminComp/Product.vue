@@ -48,7 +48,7 @@
 <script setup>
 const { products, isLoading } = useFetchProducts();
 const { categories } = useFetchCategories();
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, doc, addDoc } from 'firebase/firestore';
 import { uploadBytes, getDownloadURL, ref as Ref } from 'firebase/storage';
 import { object, string, number, array } from 'yup';
 const nuxtApp = useNuxtApp();
@@ -118,13 +118,15 @@ const uploadImagesAndAddProduct = async () => {
       imageUrls.push(imageUrl);
     }
 
+    const categoryRef = doc(db, 'categories', state.categoryId);
+
     // Add product with image URLs
     const docRef = await addDoc(collection(db, 'products'), {
       name: state.name,
       price: state.price,
       sizes: state.sizes,
       imgUrls: imageUrls,
-      categoryId: `/categories/${state.categoryId}`, // Store categoryId with the product
+      categoryId: categoryRef, // Store categoryId with the product
     });
 
 

@@ -42,9 +42,11 @@ const addCategory = async () => {
     try {
         console.log(state.name)
         isLoading.value = true;
+        const path = state.name;
+        const modPath = path.replaceAll('-','');
         const docRef = await addDoc(collection(db, 'categories'),{
             name:state.name,
-            path:`/shop/${state.name}`
+            path:`/shop/${modPath}`
         });
         console.log(docRef);
         state.name = '';

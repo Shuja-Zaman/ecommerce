@@ -28,6 +28,14 @@
             <OutlineButton @click="buyNow()" to="/checkout" class="w-full block text-center" name="Buy it now"/>
           </div>
     </div>
+    <!-- chart -->
+     <div class="py-5">
+        <div>
+            <img class="lg:w-1/2 mx-auto" v-if="productCat.id == 'jOMlXehuvDvYbE8t2GoW'" src="/assets/images/t-shirt.png" alt="size chart">
+            <img class="lg:w-1/2 mx-auto" v-if="productCat.id == 'gz8taYP8FQdEltdvrywv'" src="/assets/images/trouser.png" alt="size chart">
+            <img class="lg:w-1/2 mx-auto" v-if="productCat.id == 'yHhOSluhMxesR4oel8Lh'" src="/assets/images/oversize_t-shirt.png" alt="size chart">
+        </div>
+     </div>
   </div>
 </template>
 
@@ -43,6 +51,7 @@ const selectedSize = ref('');
 const selectedImage = ref('');
 const isLoading = ref(true);
 const toast = useToast();
+const productCat = ref('');
 
 const fetchProduct = async () => {
     try {
@@ -54,6 +63,7 @@ const fetchProduct = async () => {
             selectedSize.value = product.value.sizes[0];
             selectedImage.value = product.value.imgUrls[0];
         }
+        productCat.value = product.value.categoryId;
     } catch (error) {
         console.error('Error fetching Product: ',error);
     } finally{

@@ -3,11 +3,9 @@
     <!-- title -->
     <div class="space-y-8">
         <h1>
-            <NuxtLink to="/">
-                <img src="/assets/logos/logo_1.png" alt="aktivfits" class="h-8">
-          </NuxtLink>
+            <NuxtLink to="/" class="font-extrabold small-title">AktivFits</NuxtLink>
         </h1>
-        <p class="text-sm text-dull">Pakistan's best marketplace to buy premium clothing.</p>
+        <p class="text-sm">Pakistan's best marketplace to buy premium clothing.</p>
     </div>
     <!-- links -->
     <div class="flex flex-col">

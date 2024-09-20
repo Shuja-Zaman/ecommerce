@@ -1,8 +1,8 @@
 <template>
-  <div v-if="!isLoading" class="px-5 my-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <div v-if="!isLoading" class="px-5 my-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
     <Loader v-if="isLoading"/>
     <div class="flex p-0  flex-col gap-1">
-          <LinkButton class="w-max px-0 text-xl" v-for="category in categories" :key="category.id" :name="category.name" :to="`${category.path}-${category.id}`"/>
+          <LinkButton class="w-max px-0 lg:text-lg" v-for="category in categories" color="dark" :key="category.id" :name="category.name" :to="`${category.path}-${category.id}`"/>
       </div>
     <ProductCard class="mx-auto" v-for="product in products" :key="product.id" :item="product"/>
   </div>
@@ -25,7 +25,9 @@ const fetchProducts = async () => {
   try {
     const nuxtApp = useNuxtApp();
     const db = nuxtApp.$firestore;
-    const categoryRef = doc(db, 'categories', route.params.id);
+    const categoryId = route.params.id;
+    // Create a document reference for the category
+    const categoryRef = doc(db, 'categories', categoryId);
     const q = query(collection(db, 'products'), where('categoryId','==', categoryRef));
     const querySnapshot = await getDocs(q);
     products.value = querySnapshot.docs.map( doc => ({
