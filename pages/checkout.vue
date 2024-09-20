@@ -7,9 +7,7 @@
       <div :class="isLoading ? 'dimmed pointer-events-none' : '' " class="w-full mt-5 p-10 overflow-auto ">
         <div class="flex items-center justify-between">
             <h1>
-                <NuxtLink to="/">
-                    <img src="/assets/logos/logo.png" alt="aktivfits" class="h-6">
-                </NuxtLink>
+                AktivFits
             </h1>
             <NuxtLink to="/cart">
                 <UTooltip text="Cart" class="text-xl" :popper="{placement:'top'}">
