@@ -3,7 +3,7 @@
     <div class="left">
         <h1 class="text-light">
           <NuxtLink to="/">
-            <img src="/assets/logos/logo_1.png" alt="aktivfits" class="h-8">
+            <img src="/assets/logos/logo.png" alt="aktivfits" class="h-8">
           </NuxtLink>
         </h1>
     </div>
@@ -183,9 +183,11 @@ const userCred = useState('userCred',() => ({
   id:''
 }));
 
+const userCook = useCookie('user',{
+  maxAge: 60 * 60 * 24 * 1
+});
 const signin = async () => {
   try {
-    console.log('hello');
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     userCred.value = {
@@ -194,6 +196,7 @@ const signin = async () => {
       imgUrl: user.photoURL,
       id: user.uid
     };
+    userCook.value = user.email;
   } catch (error) {
     console.error('Error signing in: ' ,error);
   }

@@ -1,5 +1,5 @@
 <template>
-    <UButton :label="name" variant="solid" color="sky" class="rounded-none" size="xl"/>
+    <UButton :label="name" variant="solid" color="black" class="rounded-none" size="xl"/>
 </template>
 
 <script setup>

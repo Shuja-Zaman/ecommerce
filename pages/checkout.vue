@@ -8,7 +8,7 @@
         <div class="flex items-center justify-between">
             <h1>
                 <NuxtLink to="/">
-                    <img src="/assets/logos/logo_2.png" alt="aktivfits" class="h-6">
+                    <img src="/assets/logos/logo.png" alt="aktivfits" class="h-6">
                 </NuxtLink>
             </h1>
             <NuxtLink to="/cart">
@@ -88,7 +88,7 @@
                     </div>
                     <div class="flex flex-col justify-center">
                         <h1 class="font-semibold">{{ item.name }}</h1>
-                        <p class="text-dull">{{ item.size }}</p>
+                        <p class="text-dull2">{{ item.size }}</p>
                     </div>
                 </div>
                 <h1>Rs.{{ item.price * item.quantity}}</h1>
@@ -109,9 +109,9 @@
             <!-- total -->
             <div class="flex justify-between items-center font-semibold text-2xl">
                 <h1 class="font-semibold text-xl">Total</h1>
-                <p> <span class="text-sm text-dull">PKR</span> Rs. {{ subTotal + 220 }}</p>
+                <p> <span class="text-sm text-dull2">PKR</span> Rs. {{ subTotal + 220 }}</p>
             </div>
-            <p class="text-dull text-sm">Including Rs 0.00 in taxes</p>
+            <p class="text-dull2 text-sm">Including Rs 0.00 in taxes</p>
         </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex lg:flex-row flex-col justify-between gap-10 bg-sky-100 hover:bg-sky-200 duration-200 footer p-5 py-10">
+  <div class="flex lg:flex-row flex-col justify-between gap-10 bg-neutral-800 text-neutral-100 footer p-5 py-10">
     <!-- title -->
     <div class="space-y-8">
         <h1>
@@ -9,7 +9,7 @@
     </div>
     <!-- links -->
     <div class="flex flex-col">
-        <NuxtLink v-for="link in links" class="hover:text-neutral-600" :key="link.id" :to="`${link.path}`">
+        <NuxtLink v-for="link in links" class="hover:text-neutral-200" :key="link.id" :to="`${link.path}`">
             {{ link.name }}
         </NuxtLink>
     </div>
@@ -38,7 +38,7 @@ const links = ref([
     {name:'Shop', path:'/shop'},
     {name:'About us', path:'/about'},
     {name:'Contact', path:'/contact'},
-    {name:'Privacy policy', path:'/privacy-policy'}
+    {name:'Privacy policy', path:'/privacyPolicy'}
 ]);
 
 </script>

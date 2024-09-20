@@ -28,7 +28,7 @@
     }
 
     .text-highlight{
-        @apply text-sky-700;
+        @apply text-green-500;
     }
 
     .text-dark{
@@ -48,10 +48,13 @@
     }
 
     .myshadow{
-        @apply shadow-lg shadow-neutral-700;
+        @apply shadow-lg shadow-neutral-600;
     }
 
     .text-dull{
+        @apply text-neutral-300;
+    }
+    .text-dull2{
         @apply text-neutral-500;
     }
 

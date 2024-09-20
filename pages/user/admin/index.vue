@@ -37,6 +37,12 @@
 <script setup>
 const showName = ref('home');
 
+definePageMeta({
+    middleware:[
+        'admin-middleware'
+    ]
+});
+
 </script>
 
 <style>

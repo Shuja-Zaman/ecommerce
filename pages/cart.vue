@@ -57,7 +57,7 @@
             <h1 class="font-bold">SUBTOTAL</h1>
             <h1>Rs.{{ subTotal }}</h1>
           </div>
-          <p class="text-dull text-sm text-center">Shipping, taxes, and discount codes calculated at checkout.</p>
+          <p class="text-dull2 text-sm text-center">Shipping, taxes, and discount codes calculated at checkout.</p>
           <SolidButton to="/checkout" class="text-center block" name="Check out"/>
         </div>
     </div>

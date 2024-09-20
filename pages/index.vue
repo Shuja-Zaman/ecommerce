@@ -3,7 +3,7 @@
     
     <div class="h-screen flex flex-col justify-center items-center main">
       <h1 class="title px-1"> <span class="text-highlight">Pakistan's</span> Premium Aktiv-wear.</h1>
-      <h1 class="italic border-2 p-1 m-2 border-neutral-900">Sleek and Modern design</h1>
+      <h1 class="italic border-x-2 p-1 m-2 border-neutral-900">Sleek and Modern design</h1>
       <div class="space-x-5">
           <!-- shop button -->
         <SolidButton name="Shop Now" to="/shop"/>
@@ -13,7 +13,7 @@
     <hr>
 
     <div class="my-10">
-      <h1 class="text-center text-xl">We design durable "all day everyday activewear" with a conscience — 100% made in Pakistan.</h1>
+      <h1 class="text-center text-xl">Proudly Crafted in <span class="text-highlight">Pakistan</span> : 100% Local, 100% Quality.</h1>
     
       <div class="flex lg:w-[75%] lg:flex-row flex-col gap-10 items-center justify-center my-20  mx-auto">
         <img class="lg:w-1/2 w-full shadow-xl" src="/assets/images/show.jpg" alt="">
